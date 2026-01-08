@@ -66,6 +66,7 @@ DATASET_BIN_TO_APPROX = {
     "≥1M": 1_000_000,
     ">=1M": 1_000_000,
     "Not reported": np.nan,
+    "Not mentioned": np.nan,
 }
 
 
@@ -154,9 +155,9 @@ def main():
             df.loc[mask, FLAG_COL] + " | "
         ) + reason
 
-    # ---- Rule 8: Dataset size missing -> Not reported
+    # ---- Rule 8: Dataset size missing -> Not mentioned
     df[COL_DATASET_SIZE] = df[COL_DATASET_SIZE].apply(norm_str)
-    df.loc[df[COL_DATASET_SIZE].eq(""), COL_DATASET_SIZE] = "Not reported"
+    df.loc[df[COL_DATASET_SIZE].eq(""), COL_DATASET_SIZE] = "Not mentioned"
 
     # ---- Rule 1: Metadata consistency check (flag)
     mask_meta_yes_types_blank = (df[COL_METADATA_USED].eq("Yes")) & (df[COL_METADATA_TYPES].apply(is_blank))
@@ -178,9 +179,9 @@ def main():
     add_flag(pd.Series([not ok and norm_str(x) != "" for ok, x in zip(ok_vals, normalized_vals)], index=df.index),
              "Study time window not in YYYY or YYYY-YYYY (manual check)")
 
-    # ---- Rule 4: Final inclusion filter (Include or Maybe)
+    # ---- Rule 4: Final inclusion filter (Include only)
     # Keep original df for flags export first; create filtered after.
-    valid_conclusions = {"Include", "Maybe"}
+    valid_conclusions = {"Include"}
     mask_keep = df[COL_CONCLUSION].isin(valid_conclusions)
 
     # ---- Rule 5: DS Methods=None -> CV task(s)=None

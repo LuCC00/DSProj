@@ -50,7 +50,11 @@ Notes:
  - Fig2: colors countries by continent-level counts from "Study scale / case geography"
  - Fig3: bubble network of "Author affiliation continent(s)" with edge weights:
          solid = collaborations between exactly 2 continents
-         dashdot = collaborations among 3+ continents
 
+
+"""
+
+"""
+25survey__Query_.pdf  (query code and reason)
 
 """

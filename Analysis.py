@@ -312,11 +312,11 @@ def make_fig3(node_counts, edges_two, edges_three_plus, outpath="Fig3_cross_cont
 
     # Fixed "paper-like" positions
     pos = {
-        "Europe": (-0.15,  0.70),
-        "North America": ( 0.95,  0.70),
-        "Asia":          ( 0.95, -0.10),
+        "Europe": (-0.70, -0.20),          # left lower
+        "North America": (-0.40, 0.70),    # upper left
+        "Asia":          (0.95, -0.10),
         "Australia Oceania": (0.30, -0.70),
-        "Latin America": (-0.75, -0.05),
+        "Latin America": (0.80, 0.60),     # upper right
         "Africa":        (-0.55, -0.75),
         "Not mentioned": (0.10, -0.05),
     }
@@ -381,7 +381,6 @@ def make_fig3(node_counts, edges_two, edges_three_plus, outpath="Fig3_cross_cont
         return 0.5 + 1.5 * (w / max_edge)
 
     def edge_rad(a, b):
-        # Straight line (no curvature)
         return 0.0
 
     fig, ax = plt.subplots(figsize=(11, 8))
@@ -400,6 +399,7 @@ def make_fig3(node_counts, edges_two, edges_three_plus, outpath="Fig3_cross_cont
 
     # Draw edges as curved arrows (solid = 2-continent, dashdot = 3+)
     def draw_arrow(a, b, w, style="solid", alpha=0.75):
+        rad = edge_rad(a, b)
         arrow = mpatches.FancyArrowPatch(
             posA=pos[a], posB=pos[b],
             arrowstyle='-|>',              # arrow head
@@ -408,7 +408,7 @@ def make_fig3(node_counts, edges_two, edges_three_plus, outpath="Fig3_cross_cont
             linestyle=style,
             color="black",
             alpha=alpha,
-            connectionstyle="arc3,rad=0.0",
+            connectionstyle=f"arc3,rad={rad}",
             shrinkA=18, shrinkB=18,        # keeps arrow from touching node edge
         )
         ax.add_patch(arrow)

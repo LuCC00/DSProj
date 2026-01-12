@@ -54,6 +54,24 @@ Notes:
 
 """
 
+
+"""
+Tablesta.py  (Data statistics)
+
+
+
+Statistical analysis of data for each research feature from the cleaned table.
+
+INPUT (expected in the same folder as this script):
+   - Table_cleaned.xlsx  OR  Table_cleaned.csv
+
+OUTPUT (saved in the same folder):
+   - *_counts.csv
+
+
+"""
+
+
 """
 25survey__Query_.pdf  (query code and reason)
 

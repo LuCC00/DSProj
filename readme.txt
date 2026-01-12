@@ -58,18 +58,3 @@ Notes:
 25survey__Query_.pdf  (query code and reason)
 
 """
-
-
-
-"""
-Tablesta.py  (Data statistics)
-
-Calculate the frequency of each value from the cleaned data.
-
-INPUT (expected in the same folder as this script):
-   - Table_cleaned.xlsx  OR  Table_cleaned.csv
-
-OUTPUT (saved in the same folder):
-   - *_counts.csv
-
-"""
